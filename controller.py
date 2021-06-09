@@ -1,3 +1,4 @@
+import core.helpers.checkAdmin
 from core.helpers.fileHelpers import writeLog
 from core.verification.check_drives import checkDrives
 # from core.styles.colors import printText, typedText, printValue

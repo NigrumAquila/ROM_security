@@ -1,3 +1,6 @@
+from tkinter import Label
+
+
 def formatDrives(drives):
     
     for index, drive in enumerate(drives):
@@ -6,3 +9,8 @@ def formatDrives(drives):
     # print('Подсоединенные диски: '+ ' '.join([str(item) for item in drives]))
     
     return drives
+
+
+def formatAction(action):
+    action = action.replace(' ', '_')
+    return action
