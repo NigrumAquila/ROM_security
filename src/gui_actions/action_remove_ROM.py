@@ -1,9 +1,6 @@
 from tkinter import messagebox
 import tkinter as tk
 from core.helpers.fileHelpers import readDB
-from core.styles.colors import end, printText, typedText
-from core.removers.removeModule import removeModule
-from sys import modules
 
 
 DBreader, pathToDB = readDB()
@@ -56,5 +53,3 @@ removableIdentificator.grid(row=1,column=0, padx=(10, 0), pady=(0,10))
 btnRemove.grid(row=1, column=1, sticky='nsew', padx=(10, 10), pady=(0,10))
 
 remover_window.protocol('WM_DELETE_WINDOW', on_close)
-
-# removableIdentificator = typedText('Enter the number of the identifier to be deleted: ')

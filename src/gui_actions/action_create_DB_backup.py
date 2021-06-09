@@ -1,7 +1,5 @@
 from tkinter import messagebox
 from core.helpers.fileHelpers import copyDB
-from tqdm import tqdm as Bar
-from core.styles.colors import printText
 
 
 srcFile, dstFile = copyDB()

@@ -1,7 +1,6 @@
 from tkinter import messagebox
 import tkinter as tk
 from core.helpers.fileHelpers import readDB, getTimeOfCreationAndModification
-from core.styles.colors import printTextAndValue
 
 
 DB, pathToDB = readDB()

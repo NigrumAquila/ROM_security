@@ -2,7 +2,6 @@ from tkinter import messagebox
 from os import stat
 from core.helpers.fileHelpers import readDB, writeROM, writeDB
 from core.math.generateIdentificator import generateIdentificator
-from core.styles.colors import printText
 
 
 new_ROM_identificator = generateIdentificator()
@@ -11,9 +10,9 @@ DB, pathToDB = readDB()
 for line in DB:
     leftSeparator = line.find("'") + 1
     rightSeparator = line.find("'", leftSeparator)
-    ROM_identificator_duplacate_candidate = line[leftSeparator:rightSeparator]
+    ROM_identificator_duplicate_candidate = line[leftSeparator:rightSeparator]
 
-    while new_ROM_identificator == ROM_identificator_duplacate_candidate:
+    while new_ROM_identificator == ROM_identificator_duplicate_candidate:
         new_ROM_identificator = generateIdentificator()
 
 DB.seek(0)

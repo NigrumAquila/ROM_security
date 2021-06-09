@@ -1,7 +1,6 @@
 from tkinter import messagebox
 from core.helpers.fileHelpers import readDB
 from re import match
-from core.styles.colors import printTextAndValue, printText, warning, end
 
 
 DB, path = readDB()

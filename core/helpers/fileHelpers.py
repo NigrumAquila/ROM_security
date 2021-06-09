@@ -1,6 +1,5 @@
 from os import stat
-from os.path import splitext, isfile, getctime, getmtime, exists
-# from core.styles.colors import typedText
+from os.path import splitext, getctime, getmtime, exists
 from time import ctime
 
 
@@ -21,7 +20,7 @@ def writeLog():
 
 
 def writeROM():
-    ROM_directory = __pickFile(ask='directory')
+    ROM_directory = __pickFile(ask='directory', title='Select root folder of ROM')
     ROM_file_path = ROM_directory + '/' + 'ROM_security'
     ROM_file = None
 
@@ -78,7 +77,7 @@ def addDB(path=''):
 
 
 def copyDB(path=''):
-    if path == '': path = __pickFile(ask='openfilename')
+    if path == '': path = __pickFile(ask='openfilename', title='Select DB')
     if path == '': raise Exception('File not selected.')
     
     filename, file_extension = splitext(path)
