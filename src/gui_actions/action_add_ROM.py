@@ -1,3 +1,4 @@
+from tkinter import messagebox
 from os import stat
 from core.helpers.fileHelpers import readDB, writeROM, writeDB
 from core.math.generateIdentificator import generateIdentificator
@@ -37,4 +38,5 @@ writable_row = str(DB_next_identificator) + ': ' + "'" + new_ROM_identificator +
 DB.write(writable_row)
 DB.close()
 
-printText('ROM added successfully.')
+
+messagebox.showinfo(title='Add ROM', message='ROM added successfully.')

@@ -11,6 +11,10 @@ def formatDrives(drives):
     return drives
 
 
-def formatAction(action):
-    action = action.replace(' ', '_')
+def formatActionSpaceToUnderscore(action):
+    action = action.replace(' ', '_') 
+    return action
+
+def formatActionUnderscoreToSpace(action):
+    action = action.replace('_', ' ') 
     return action

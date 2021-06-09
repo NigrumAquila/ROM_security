@@ -1,32 +1,60 @@
+from tkinter import messagebox
+import tkinter as tk
 from core.helpers.fileHelpers import readDB
 from core.styles.colors import end, printText, typedText
+from core.removers.removeModule import removeModule
+from sys import modules
 
 
-DB, pathToDB = readDB()
+DBreader, pathToDB = readDB()
 
-removableIdentificator = typedText('Enter the number of the identifier to be deleted: ')
 
-lines = DB.readlines()
-DB.close()
+def remove(removableIdentificator):
+    global DB
+    DBreader.seek(0)
+    lines = DBreader.readlines()
 
-lineFlag = False
-for line in lines:
-    separator = line.find(':')
-    lineIdentificator = line[:separator]
-    if lineIdentificator == removableIdentificator: 
-        lineFlag = True
-        break
+    lineFlag = False
+    for line in lines:
+        separator = line.find(':')
+        lineIdentificator = line[:separator]
+        if lineIdentificator == removableIdentificator: 
+            lineFlag = True
+            break
 
-if lineFlag != True: end('Identificator not found in DB.')
+    if lineFlag != True:
+        messagebox.showerror(title='Remove ROM', message='Identificator not found in DB.', parent=remover_window)
 
-DB = open(pathToDB, "w")
+    else:
+        DBwriter = open(pathToDB, "w")
 
-for line in lines:
-    separator = line.find(':')
-    lineIdentificator = line[:separator]
-    if lineIdentificator == removableIdentificator: continue
-    DB.write(line)
+        for line in lines:
+            separator = line.find(':')
+            lineIdentificator = line[:separator]
+            if lineIdentificator == removableIdentificator: continue
+            DBwriter.write(line)
 
-DB.close()
+        DBwriter.close()
 
-printText('ROM removed successfully.')
+        messagebox.showinfo(title='Remove ROM', message='ROM removed successfully.', parent=remover_window)
+
+
+def on_close():
+    DBreader.close()
+    remover_window.destroy()
+
+
+remover_window = tk.Toplevel()
+remover_window.title('Remove ROM')
+
+helpLabel = tk.Label(remover_window, text="Enter ROM ID in DB")
+removableIdentificator = tk.Entry(remover_window, width=30)
+btnRemove = tk.Button(master=remover_window, text='Remove', command=lambda: remove(removableIdentificator.get()))
+
+helpLabel.grid(row=0, columnspan=2, pady=(10,20))
+removableIdentificator.grid(row=1,column=0, padx=(10, 0), pady=(0,10))
+btnRemove.grid(row=1, column=1, sticky='nsew', padx=(10, 10), pady=(0,10))
+
+remover_window.protocol('WM_DELETE_WINDOW', on_close)
+
+# removableIdentificator = typedText('Enter the number of the identifier to be deleted: ')

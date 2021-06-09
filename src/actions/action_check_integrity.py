@@ -5,7 +5,7 @@ from core.styles.colors import printTextAndValue, printText, warning, end
 
 DB, path = readDB()
 
-pattern = "\d+:\s'[^']+'"
+pattern = "\d+:\s'[^']+'$"
 
 identificators = []
 

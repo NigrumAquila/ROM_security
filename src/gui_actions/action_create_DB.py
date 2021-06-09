@@ -1,6 +1,8 @@
+from tkinter import messagebox
 from core.helpers.fileHelpers import addDB
 from core.styles.colors import printText
 
 addDB()
 
-printText('Database created.')
+
+messagebox.showinfo(title='Create DB', message='Database created.')
