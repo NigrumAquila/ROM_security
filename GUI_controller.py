@@ -1,14 +1,24 @@
+import threading
 import tkinter as tk
-from core.constants.interfaceConstants import EXIT, GUI_ACTION_MODULE_SPACE
-from core.constants.actionConstants import ACTION_choice
-from core.removers.removeModule import removeModule
-from core.gui.invoke_action import invoke_action
-
-window = tk.Tk()
-window.title('DB Manager')
-
-window.rowconfigure(0, minsize=60, weight=1)
-window.columnconfigure([0, 1, 2, 3, 4, 5], minsize=100, weight=1)
+from core.gui.drawControllerButtons import drawControllerButtons
+from src.controller.functions import getStatus
 
 
-window.mainloop()
+controllerApp = tk.Tk()
+controllerApp.title('ROM Controller')
+controllerApp.geometry('250x70')
+
+label = tk.Label(text=getStatus(), fg='sky blue')
+label.grid(row=0, sticky='', columnspan=2)
+
+drawControllerButtons(controllerApp)
+
+
+def on_close():
+    from src.controller.functions import stop; stop()
+    controllerApp.destroy()
+    exit()
+
+
+controllerApp.protocol('WM_DELETE_WINDOW', on_close)
+controllerApp.mainloop()
