@@ -1,3 +1,7 @@
+from core.helpers.checkAdmin import checkAdmin
+
+checkAdmin()
+
 import tkinter as tk
 from core.gui.drawManagerButtons import drawManagerButtons
 

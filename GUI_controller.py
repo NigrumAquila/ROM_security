@@ -1,3 +1,7 @@
+from core.helpers.checkAdmin import checkAdmin
+
+checkAdmin()
+
 import threading
 import tkinter as tk
 from core.gui.drawControllerButtons import drawControllerButtons
@@ -7,6 +11,7 @@ from src.controller.functions import getStatus
 controllerApp = tk.Tk()
 controllerApp.title('ROM Controller')
 controllerApp.geometry('250x70')
+# controllerApp.configure(background='white')
 
 label = tk.Label(text=getStatus(), fg='sky blue')
 label.grid(row=0, sticky='', columnspan=2)
