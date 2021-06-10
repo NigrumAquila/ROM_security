@@ -12,29 +12,35 @@ from core.verification.check_drives import checkDrives
 from time import sleep, ctime
 
 
-def new_thread():
-    thread = Thread(target=start)
+def new_thread(task):
+    thread = Thread(target=task)
     thread.start()
 
 def start():
     global trigger
     if 'trigger' in globals() and trigger == True: return
+    trigger = True
 
 
     approvedIdentificators = getApprovedIdentificators()
     pathToLogFile = writeLog()
 
     def getExclusions():
+        # global presets
         presets = exclusions.get()
         presets = presets.split(',')
-
         for index, preset in enumerate(presets):
             presets[index] = preset.upper() + ':'
-    
+        
         messagebox.showinfo(title='info', message='Program running')
         # messagebox.showinfo(title='info', message=presets)
         window.destroy()
-        run(presets)
+        # new_thread(run(presets))
+        __main__.label['text'] = getStatus()
+        __main__.label['fg'] = '#0f0'
+        
+        # Thread(target=run(presets)).start()
+        Thread(target=run, args=(presets,)).start()
         
     window = tk.Toplevel(__main__.controllerApp)
     window.title("Start programm")
@@ -47,17 +53,12 @@ def start():
     
     
     # exclusions = getExclusions()
-    def run(exclusions):
-        trigger = True
-        __main__.label['text'] = getStatus()
-        __main__.label['fg'] = '#0f0'
-        
-
+    def run(presets):
         while trigger:
             drives = scanDrives()
             drives = formatDrives(drives)
 
-            to_check = getToCheckedDrives(drives, exclusions)
+            to_check = getToCheckedDrives(drives, presets)
 
             sleep(1)
 

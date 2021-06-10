@@ -9,6 +9,7 @@ CONTROLLER_choice = {
 
 CONTROLLER_functions = {
     # 'start': lambda: Thread(target=start).start(), 
-    'start': new_thread, 
+    # 'start': new_thread, 
+    'start': start, 
     'stop': stop
 }
